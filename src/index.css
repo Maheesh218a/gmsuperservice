@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-black: #020617; /* Slate 950, deep rich blue-black */
+  --color-brand-dark: #0f172a; /* Slate 900 */
+  --color-brand-darkgray: #1e293b; /* Slate 800 */
+  --color-brand-metallic: #94a3b8; /* Slate 400 */
+  --color-brand-light: #f1f5f9; /* Slate 100 */
+  --color-brand-accent: #d4af37; /* Luxury Gold */
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Outfit', system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-black text-white antialiased selection:bg-brand-accent selection:text-black overflow-x-hidden;
+    font-family: var(--font-sans);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+@layer utilities {
+  .glassmorphism {
+    @apply bg-white/5 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+  
+  .glassmorphism-dark {
+    @apply bg-black/40 backdrop-blur-3xl border border-white/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.5)];
+  }
+  
+  .glassmorphism-gold {
+    @apply bg-brand-accent/10 backdrop-blur-2xl border border-brand-accent/20 shadow-[0_8px_32px_0_rgba(212,175,55,0.1)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-brand-light to-brand-metallic;
+  }
+  
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-accent via-[#fef08a] to-[#a16207];
+  }
+
+  .bg-orb {
+    @apply absolute rounded-full blur-[120px] pointer-events-none opacity-40 mix-blend-screen;
+    animation: float 20s infinite ease-in-out alternate;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-50px) scale(1.1); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
